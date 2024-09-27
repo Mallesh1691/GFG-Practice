@@ -1,0 +1,23 @@
+BruteForce
+1)Traverse through entire array, for each window , create a new array of size window, and find the maximum of that array in a separate function
+TC: O(N*K) K being the window size
+SC: O(K) A new array of size K is being created each time.
+
+If you observe , lets say array is {1,2,3,4,5} and K is 3
+initially we compare the 1,2,3 and return 3.
+In the next iteration we compare 2,3,4 and return 4. So we are passing 2,3 into the array twice.
+
+Optimized approach:
+1)first find the maximum of first k elements and store it in tempMax.
+2)Next start the iteration from i=1;
+3)Now , we need to check if the tempMax(it will be of previous window) is in the first position of window K or in last K-1 elements, this 
+we can check like if tempMax == arr[i-1];
+
+if tempMax of previous window is the first elements of previous window we, need to create a new window of K elements again starting from i=1;
+Other wise we just need to check, if tempMax > newly adding elements to the window now, i.e. arr[i+k-1];
+whose ever is greater, add it to tempMax and store it to list.
+
+That way you will be doing less no of comparision compared to the BruteForce Approach.
+
+Note: The one more way , instead of creating an array of size K each time when required, we can pass start index,end index  and array to a function , which will
+return the maximum element between start and end index;
